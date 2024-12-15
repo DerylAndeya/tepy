@@ -60,12 +60,12 @@
         }
 
         .floating-begging {
-            top: 8vh;
+            top: 16vh;
             left: 3vw;
         }
 
         .cute-mochi {
-            bottom: 20vh;
+            bottom: 3vh;
             right: 3vw;
         }
 
@@ -206,6 +206,37 @@
                 margin-bottom: 0.3rem;
             }
         }
+        .kiss-counter-container {
+            text-align: center;
+            margin-top: 2rem; /* Space between letter and counter */
+        }
+
+        #kiss-count {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #d94e73;
+        }
+
+        #kiss-button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #d94e73;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #kiss-button:hover {
+            background-color: #c73b5d;
+            transform: scale(1.05);
+        }
+        #kiss-button:active {
+            transform: scale(0.95); /* Slightly scale down on click */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Adjust shadow on click */
+        }
     </style>
 </head>
 <body>
@@ -229,6 +260,12 @@
                 <p><strong>Sincerely Your One and Only Baby, Deryl <3</strong></p>
             </div>
         </div>
+        <div class="container">
+            <div class="kiss-counter-container">
+                 <p id="kiss-count">Kisses from Tepy to Deryl: 0</p>
+                 <button id="kiss-button">Kishhh Meee hehehe 💋</button>
+             </div>
+         </div>
     </div>
     <script>
         const emojiContainer = document.querySelector('.floating-emojis');
@@ -266,6 +303,7 @@
         const letter = document.querySelector('.letter');
         const closeButton = document.querySelector('.close-btn');
 
+
         flap.addEventListener('click', () => {
             flap.classList.add('open'); 
             letter.classList.add('show'); 
@@ -275,6 +313,14 @@
             event.stopPropagation(); 
             flap.classList.remove('open'); 
             letter.classList.remove('show'); 
+        });
+        const kissCountDisplay = document.getElementById('kiss-count');
+        const kissButton = document.getElementById('kiss-button');
+        let kissCount = 0;
+
+        kissButton.addEventListener('click', () => {
+            kissCount++;
+            kissCountDisplay.textContent = `Kishes from Tepy to Deryl: ${kissCount} Kishes`;
         });
     </script>
 </body>

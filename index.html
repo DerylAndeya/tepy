@@ -3,22 +3,273 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Letter</title>
+    <title>For Tepy💕</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fbd6e2, #ffe5ec, #f7d9d7);
+            background-size: 300% 300%;
+            animation: bg-animation 6s infinite;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes bg-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .floating-emojis, .floating-images {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .emoji, .floating-image {
+            position: absolute;
+            font-size: 2rem;
+            top: calc(100% * var(--y));
+            left: calc(100% * var(--x));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-heart {
+    position: absolute;
+    top: 260px; /* Adjust vertical positioning */
+    right: 100px; /* Adjust horizontal positioning */
+    width: 200px; /* Adjust size for better appearance */
+    z-index: 10;
+    animation: float-right 5s ease-in-out infinite; /* Floating effect */
+    opacity: 1;
+}
+
+/* Animation for floating */
+@keyframes float-right {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+
+        .floating-begging {
+    position: absolute;
+    top: 300px; /* Adjust position as needed */
+    left: 100px; /* Adjust position as needed */
+    width: 200px; /* Adjust size for your design */
+    z-index: 10;
+    animation: float-left 5s ease-in-out infinite; /* Floating effect */
+    opacity: 1;
+}
+
+/* Animation for floating */
+@keyframes float-left {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+        .cute-mochi {
+        position: absolute;
+        bottom:80px;
+        right: 20px;
+        width: 350px; /* Adjust size for cuteness */
+        z-index: 1;
+        animation: float 5s ease-in-out infinite; /* Floating animation */
+        opacity: 1;
+    }
+
+    /* Floating animation for extra cuteness */
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        .title {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #d94e73;
+            text-shadow: 2px 2px #ffe5ec;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .envelope {
+            position: relative;
+            width: 540px;
+            height: 540px;
+            background: #ff9eb5;
+            border: 4px solid #f97a9b;
+            border-radius: 10px;
+            box-shadow: 1 10px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            cursor: pointer;
+            margin: 0 auto;
+        }
+
+        .flap {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 50%;
+            background: #ffb2c4;
+            border-bottom: 2px solid #f97a9b;
+            transform-origin: top;
+            transition: transform 0.5s ease-in-out;
+            z-index: 2;
+        }
+
+        .flap.open {
+            transform: rotateX(180deg);
+        }
+
+        .letter {
+            position: absolute;
+            bottom: -100%;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: bottom 0.5s ease-in-out;
+            z-index: 1;
+        }
+
+        .letter.show {
+            bottom: 0;
+        }
+
+        .letter p {
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: #444;
+        }
+
+        .letter p:first-child {
+            font-weight: bold;
+            color: #d94e73;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 15px;
+            font-size: 0.9rem;
+            background-color: #d94e73;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .close-btn:hover {
+            background-color: #c73b5d;
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="envelope" onclick="openLetter()">
+    <img src="https://i.pinimg.com/474x/d7/c4/3f/d7c43f74abd0f1e57dd57244766c66cf.jpg" 
+     alt="Cute Heart Icon" 
+     class="floating-heart">
+    <img src="https://thumbs.dreamstime.com/b/begging-emoticon-showing-clasped-hands-41405302.jpg" 
+     alt="Begging Emoticon" 
+     class="floating-begging">
+    <img src="https://www.pngitem.com/pimgs/m/511-5112492_cute-kawaii-mochi-pitu-meitu-line-linefriends-transparent.png" 
+         alt="Cute Mochi" 
+         class="cute-mochi">
+    <div class="floating-emojis"></div>
+    <div class="floating-images"></div>
+    <div class="container">     
+        <h1 class="title">Hiii babyyy, i made this and i hope u like it <3</h1>
+        <h2 class="title">BABYYY, OPEN THIS LETTER NAAA 💌</h2>
+        <div class="envelope">
             <div class="flap"></div>
             <div class="letter">
-                <p class="greeting">For My Baby Tepy,</p>
-                <p>I just wanted to say that I love you so much and I'm thinking of you always. You mean the world to me and I am so grateful to have you in my life.</p>
-                <p class="closing">Your Baby,</p>
-                <p class="signature">Deryl <3</p>
+                <button class="close-btn">Close Letter</button>
+                <p><strong>To: My Baby Steffany 💖</strong></p>
+                <p>babyyy i know that testing u out was a wrong thing to do and im sorry for that. i really love u and u may say that im too obsessed 🥺. the only purpose of doing that was just to see ur reaction and respond to any guys when they try to court u. and i expected u to ignore them when they ask u to chat w u or even ask for social media. im a guy, and i know what their intention. baby, im selfish i know, i just want u for myself. ive told u many times that im really that selfish when it comes to u. i dont want any guys really get ur attention. i hate it..</p>
+                    <p>&nbsp</p>
+                <p>and i always think that im such a boring and flat person, im really scared of losing u bc i feel so replaceable fr. but i really tried best and love to make u laugh, happy and i dont want u to feel the emptiness. im sorry that i always want to be w u (i want u 24/7 actually 😭) bc i only have u, so when ure not around i feel lost huhu. and im happy whenever im w u, i can be myself and can be open to someone who willing to listen to me. i feel so loved by u baby, thank u :)</p>
+                <p>&nbsp</p>
+                <p>i just hope that u understand, and i really want u to ask anything abt me so u know me more. and one thing babyy u dont have to worry abt me, when i love someone i love them the most. im gonna be the most loyal boy in this generation ig HAHAHAH. and if u love me babyy, i hope u respect me and never respond to any guys that try to court u okiii 🥺. i love you baby, im really sorry for what i did and i will not do it again</p>
+                <p><strong>Your Baby, Deryl <3</strong></p>
             </div>
         </div>
     </div>
+    <script>
+        const emojiContainer = document.querySelector('.floating-emojis');
+        const imageContainer = document.querySelector('.floating-images');
+        const emojis = ['💖', '💋', '💞', '🌟', '💕', '🥺','☹️',];
+        const minSpacing = 10; // Minimum spacing between emojis in percentage of screen size
+        const positions = [];
 
-    <script src="script.js"></script>
+function getRandomPosition() {
+    let x, y, isTooClose;
+    do {
+        x = Math.random();
+        y = Math.random();
+        isTooClose = positions.some(pos => {
+            const dx = (pos.x - x) * 100;
+            const dy = (pos.y - y) * 100;
+            return Math.sqrt(dx * dx + dy * dy) < minSpacing;
+        });
+    } while (isTooClose);
+    positions.push({ x, y });
+    return { x, y };
+}
+        for (let i = 0; i < 65; i++) {
+            const emoji = document.createElement('div');
+    const { x, y } = getRandomPosition();
+    emoji.classList.add('emoji');
+    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    emoji.style.setProperty('--x', x);
+    emoji.style.setProperty('--y', y);
+    emojiContainer.appendChild(emoji);
+}
+
+        
+      const flap = document.querySelector('.flap');
+        const letter = document.querySelector('.letter');
+        const closeButton = document.querySelector('.close-btn');
+
+        flap.addEventListener('click', () => {
+            flap.classList.add('open'); 
+            letter.classList.add('show'); 
+        });
+
+        closeButton.addEventListener('click', (event) => {
+            event.stopPropagation(); 
+            flap.classList.remove('open'); 
+            letter.classList.remove('show'); 
+        });
+    </script>
 </body>
 </html>

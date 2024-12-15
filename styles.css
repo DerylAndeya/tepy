@@ -1,68 +1,124 @@
-body {
-    background-color: #f9f3f3;
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Arial', sans-serif;
+}
+
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
+    background-color: #fbd6e2; /* Soft Pink */
+    color: #333;
 }
 
 .container {
-    perspective: 1000px;
+    text-align: center;
 }
 
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #d94e73; /* Romantic Pink */
+}
+
+/* Envelope Styles */
 .envelope {
-    width: 300px;
-    height: 200px;
-    background-color: #ffcccb;
-    border: 2px solid #ff6f61;
-    border-radius: 10px;
     position: relative;
+    width: 500px; /* Bigger Envelope */
+    height: 500px;
+    background: #d94e73; /* Main Envelope Color */
+    border: 2px solid #c73b5d;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
     cursor: pointer;
-    transition: transform 0.5s;
 }
 
-.envelope:hover {
-    transform: scale(1.05);
-}
-
+/* Envelope Flap */
 .flap {
-    width: 100%;
-    height: 50%;
-    background-color: #ff6f61;
     position: absolute;
     top: 0;
-    left: 0;
-    border-radius: 10px 10px 0 0;
-    transition: transform 0.5s;
+    width: 100%;
+    height: 50%;
+    background: #e96582; /* Flap color */
+    transform-origin: top;
+    transition: transform 0.5s ease-in-out;
+    z-index: 2;
 }
 
+.flap.open {
+    transform: rotateX(180deg); /* Flap opens smoothly */
+}
+
+/* Letter */
 .letter {
+    position: absolute;
+    bottom: -100%;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     padding: 20px;
-    display: none; /* Initially hidden */
+    text-align: left;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: bottom 0.5s ease-in-out;
+    z-index: 1;
 }
 
-.greeting {
-    font-size: 1.5em;
-    color: #d50000;
+.letter.show {
+    bottom: 0; /* Letter slides into view */
 }
 
-.closing {
-    margin-top: 20px;
+.letter p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #444;
+}
+
+.letter p:first-child {
     font-weight: bold;
+    color: #e94e77;
 }
 
-.signature {
-    font-style: italic;
-    color: #d50000;
+.bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background: #d94e73; /* Envelope Bottom */
+    z-index: 0;
 }
 
-.envelope.open .flap {
+/* Hover Effects */
+.envelope:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+}
+
+.envelope:active .flap {
     transform: rotateX(180deg);
 }
 
-.envelope.open .letter {
-    display: block; /* Show letter when opened */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    background-color: #d94e73;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
 }
 
+.close-btn:hover {
+    background-color: #c73b5d;
+}

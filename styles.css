@@ -1,22 +1,26 @@
 body {
+    background-color: #f9f3f3;
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f8f9fa;
     margin: 0;
-    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    perspective: 1000px;
 }
 
 .envelope {
-    position: relative;
     width: 300px;
     height: 200px;
-    background-color: #ff6f61;
+    background-color: #ffcccb;
+    border: 2px solid #ff6f61;
     border-radius: 10px;
+    position: relative;
     cursor: pointer;
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.5s;
 }
 
 .envelope:hover {
@@ -24,42 +28,44 @@ body {
 }
 
 .flap {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 50%;
     background-color: #ff6f61;
-    border-bottom: 5px solid #d9534f;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    transition: transform 0.3s ease-in-out;
-    transform-origin: top;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 10px 10px 0 0;
+    transition: transform 0.5s;
 }
 
 .letter {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    border-radius: 10px;
     padding: 20px;
-    box-sizing: border-box;
-    transform: translateY(100%);
-    transition: transform 0.3s ease-in-out;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none; /* Initially hidden */
 }
 
-.letter p {
-    margin: 0 0 10px;
+.greeting {
+    font-size: 1.5em;
+    color: #d50000;
+}
+
+.closing {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.signature {
+    font-style: italic;
+    color: #d50000;
 }
 
 .envelope.open .flap {
-    transform: rotateX(-180deg);
+    transform: rotateX(180deg);
 }
 
 .envelope.open .letter {
-    transform: translateY(0);
+    display: block; /* Show letter when opened */
+}
+function openLetter() {
+    const envelope = document.querySelector('.envelope');
+    envelope.classList.toggle('open');
 }

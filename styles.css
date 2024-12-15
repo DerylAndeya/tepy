@@ -65,7 +65,4 @@ body {
 .envelope.open .letter {
     display: block; /* Show letter when opened */
 }
-function openLetter() {
-    const envelope = document.querySelector('.envelope');
-    envelope.classList.toggle('open');
-}
+

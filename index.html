@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Tepy💕</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         * {
             margin: 0;
@@ -23,6 +22,7 @@
             animation: bg-animation 6s infinite;
             overflow: hidden;
             position: relative;
+            flex-direction: column;
         }
 
         @keyframes bg-animation {
@@ -38,7 +38,7 @@
             pointer-events: none;
         }
 
-        .emoji, .floating-image {
+        .emoji {
             position: absolute;
             font-size: 2rem;
             top: calc(100% * var(--y));
@@ -46,86 +46,73 @@
             animation: float 3s ease-in-out infinite;
         }
 
+        .floating-image {
+            position: absolute;
+            width: 20vw;
+            max-width: 150px;
+            z-index: 10;
+            animation: float 5s ease-in-out infinite;
+        }
+
         .floating-heart {
-    position: absolute;
-    top: 260px; /* Adjust vertical positioning */
-    right: 100px; /* Adjust horizontal positioning */
-    width: 200px; /* Adjust size for better appearance */
-    z-index: 10;
-    animation: float-right 5s ease-in-out infinite; /* Floating effect */
-    opacity: 1;
-}
-
-/* Animation for floating */
-@keyframes float-right {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
+            top: 8vh;
+            right: 3vw;
+        }
 
         .floating-begging {
-    position: absolute;
-    top: 340px; /* Adjust position as needed */
-    left: 100px; /* Adjust position as needed */
-    width: 200px; /* Adjust size for your design */
-    z-index: 10;
-    animation: float-left 5s ease-in-out infinite; /* Floating effect */
-    opacity: 1;
-}
-
-/* Animation for floating */
-@keyframes float-left {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
+            top: 16vh;
+            left: 3vw;
+        }
 
         .cute-mochi {
-        position: absolute;
-        bottom:80px;
-        right: 20px;
-        width: 350px; /* Adjust size for cuteness */
-        z-index: 1;
-        animation: float 5s ease-in-out infinite; /* Floating animation */
-        opacity: 1;
-    }
+            bottom: 3vh;
+            right: 3vw;
+        }
 
-    /* Floating animation for extra cuteness */
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-    }
-
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
 
         .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
             position: relative;
+            width: 90vw;
+            max-width: 800px;
+            padding: 2rem;
         }
 
         .title {
-            font-size: 2.8rem;
-            margin-bottom: 2rem;
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
             color: #d94e73;
-            text-shadow: 2px 2px #ffe5ec;
+            text-shadow: 1px 1px #ffe5ec;
             animation: pulse 2s infinite;
+            line-height: 1.1;
         }
 
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.03); }
             100% { transform: scale(1); }
         }
 
         .envelope {
             position: relative;
-            width: 540px;
-            height: 540px;
+            width: 100%;
+            max-width: 95vw;
+            height: auto;
             background: #ff9eb5;
             border: 4px solid #f97a9b;
             border-radius: 10px;
-            box-shadow: 1 10px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 3px 3px 10px rgba(0,0,0,.3);
             overflow: hidden;
             cursor: pointer;
-            margin: 0 auto;
+            margin-bottom: 3rem;
+            aspect-ratio: 16/9;
         }
 
         .flap {
@@ -134,7 +121,7 @@
             width: 100%;
             height: 50%;
             background: #ffb2c4;
-            border-bottom: 2px solid #f97a9b;
+            border-bottom: 3px solid #f97a9b;
             transform-origin: top;
             transition: transform 0.5s ease-in-out;
             z-index: 2;
@@ -146,27 +133,30 @@
 
         .letter {
             position: absolute;
-            bottom: -100%;
+            bottom: 0;
             width: 100%;
             height: 100%;
             background: #fff;
             border: 1px solid #ddd;
             border-radius: 10px;
-            padding: 20px;
+            padding: 1rem;
             text-align: left;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: bottom 0.5s ease-in-out;
+            transition: transform 0.5s ease-in-out;
             z-index: 1;
+            transform: translateY(100%);
+            overflow-y: auto;
         }
 
         .letter.show {
-            bottom: 0;
+            transform: translateY(0);
         }
 
         .letter p {
-            font-size: 0.8rem;
-            line-height: 1.5;
+            font-size: 0.85rem;
+            line-height: 1.2;
             color: #444;
+            margin-bottom: 0.5rem;
         }
 
         .letter p:first-child {
@@ -178,7 +168,7 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            padding: 5px 15px;
+            padding: 8px 16px;
             font-size: 0.9rem;
             background-color: #d94e73;
             color: white;
@@ -193,21 +183,37 @@
             background-color: #c73b5d;
             transform: scale(1.1);
         }
+
+        /* Media Queries for smaller screens */
+        @media screen and (max-width: 768px) {
+            .envelope {
+                aspect-ratio: 4/3;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .envelope {
+                aspect-ratio: 1/1;
+            }
+            .title {
+                font-size: 1.2rem;
+                margin-bottom: 0.3rem;
+            }
+        }
+        @media screen and (max-width: 375px) {
+            .title {
+                font-size: 1rem;
+                margin-bottom: 0.3rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <img src="https://i.pinimg.com/474x/d7/c4/3f/d7c43f74abd0f1e57dd57244766c66cf.jpg" 
-     alt="Cute Heart Icon" 
-     class="floating-heart">
-    <img src="https://thumbs.dreamstime.com/b/begging-emoticon-showing-clasped-hands-41405302.jpg" 
-     alt="Begging Emoticon" 
-     class="floating-begging">
-    <img src="https://www.pngitem.com/pimgs/m/511-5112492_cute-kawaii-mochi-pitu-meitu-line-linefriends-transparent.png" 
-         alt="Cute Mochi" 
-         class="cute-mochi">
+    <img src="https://i.pinimg.com/474x/d7/c4/3f/d7c43f74abd0f1e57dd57244766c66cf.jpg" alt="Cute Heart Icon" class="floating-image floating-heart">
+    <img src="https://thumbs.dreamstime.com/b/begging-emoticon-showing-clasped-hands-41405302.jpg" alt="Begging Emoticon" class="floating-image floating-begging">
+    <img src="https://www.pngitem.com/pimgs/m/511-5112492_cute-kawaii-mochi-pitu-meitu-line-linefriends-transparent.png" alt="Cute Mochi" class="floating-image cute-mochi">
     <div class="floating-emojis"></div>
-    <div class="floating-images"></div>
-    <div class="container">     
+    <div class="container">
         <h1 class="title">Hiii babyyy, i made this and i hope u like it <3</h1>
         <h2 class="title">BABYYY, OPEN THIS LETTER NAAA 💌</h2>
         <div class="envelope">
@@ -216,7 +222,7 @@
                 <button class="close-btn">Close Letter</button>
                 <p><strong>To: My Baby Steffany 💖</strong></p>
                 <p>babyyy i know that testing u out was a wrong thing to do and im sorry for that. i really love u and u may say that im too obsessed 🥺. the only purpose of doing that was just to see ur reaction and respond to any guys when they try to court u. and i expected u to ignore them when they ask u to chat w u or even ask for social media. im a guy, and i know what their intention. baby, im selfish i know, i just want u for myself. ive told u many times that im really that selfish when it comes to u. i dont want any guys really get ur attention. i hate it..</p>
-                    <p>&nbsp</p>
+                <p>&nbsp</p>    
                 <p>and i always think that im such a boring and flat person, im really scared of losing u bc i feel so replaceable fr. but i really tried best and love to make u laugh, happy and i dont want u to feel the emptiness. im sorry that i always want to be w u (i want u 24/7 actually 😭) bc i only have u, so when ure not around i feel lost huhu. and im happy whenever im w u, i can be myself and can be open to someone who willing to listen to me. i feel so loved by u baby, thank u :)</p>
                 <p>&nbsp</p>
                 <p>i just hope that u understand, and i really want u to ask anything abt me so u know me more. and one thing babyy u dont have to worry abt me, when i love someone i love them the most. im gonna be the most loyal boy ull ever known in this generation ig HAHAHAHAHA. and baby if u love me 🥺, i hope u respect and consider me as someone and would never respond to any guys that try to court u okiii 🥺. i really love you baby to the whole world 🌎, once again im really sorry for what i did and i will not do it again i pwomise!</p>
@@ -231,32 +237,32 @@
         const minSpacing = 10; // Minimum spacing between emojis in percentage of screen size
         const positions = [];
 
-function getRandomPosition() {
-    let x, y, isTooClose;
-    do {
-        x = Math.random();
-        y = Math.random();
-        isTooClose = positions.some(pos => {
-            const dx = (pos.x - x) * 100;
-            const dy = (pos.y - y) * 100;
-            return Math.sqrt(dx * dx + dy * dy) < minSpacing;
-        });
-    } while (isTooClose);
-    positions.push({ x, y });
-    return { x, y };
-}
+        function getRandomPosition() {
+            let x, y, isTooClose;
+            do {
+                x = Math.random();
+                y = Math.random();
+                isTooClose = positions.some(pos => {
+                    const dx = (pos.x - x) * 100;
+                    const dy = (pos.y - y) * 100;
+                    return Math.sqrt(dx * dx + dy * dy) < minSpacing;
+                });
+            } while (isTooClose);
+            positions.push({ x, y });
+            return { x, y };
+        }
         for (let i = 0; i < 65; i++) {
             const emoji = document.createElement('div');
-    const { x, y } = getRandomPosition();
-    emoji.classList.add('emoji');
-    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    emoji.style.setProperty('--x', x);
-    emoji.style.setProperty('--y', y);
-    emojiContainer.appendChild(emoji);
-}
+            const { x, y } = getRandomPosition();
+            emoji.classList.add('emoji');
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.setProperty('--x', x);
+            emoji.style.setProperty('--y', y);
+            emojiContainer.appendChild(emoji);
+        }
 
         
-      const flap = document.querySelector('.flap');
+        const flap = document.querySelector('.flap');
         const letter = document.querySelector('.letter');
         const closeButton = document.querySelector('.close-btn');
 
